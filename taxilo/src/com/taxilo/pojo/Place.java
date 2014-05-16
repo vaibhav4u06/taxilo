@@ -1,12 +1,16 @@
 package com.taxilo.pojo;
 
+import java.io.Serializable;
+
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Place {
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
+public class Place implements Serializable{
 	@Id
 	@ObjectId
 	private String id;

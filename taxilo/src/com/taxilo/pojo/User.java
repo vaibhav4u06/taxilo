@@ -1,14 +1,17 @@
 package com.taxilo.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class User {
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
+public class User implements Serializable{
 	@Id
 	@ObjectId
 	private String id;
@@ -34,6 +37,22 @@ public class User {
 	private Boolean isLoggedIn;
 	@JsonProperty("ssoToken")
 	private String ssoToken;
+	@JsonProperty("phoneNumber")
+	private String phoneNumber;
+	@JsonProperty("dateOfBirth")
+	private Date dateOfBirth;
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
 	public Boolean getIsLoggedIn() {
 		return isLoggedIn;
 	}

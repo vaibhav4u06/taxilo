@@ -1,10 +1,15 @@
 package com.taxilo.pojo;
 
+import java.io.Serializable;
+
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Rating {
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
+public class Rating implements Serializable{
 	@JsonProperty("punctualityRating")
 	Integer punctualityRating;
 	@JsonProperty("cleanlinessRating")

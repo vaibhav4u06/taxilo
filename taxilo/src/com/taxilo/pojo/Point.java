@@ -1,10 +1,15 @@
 package com.taxilo.pojo;
 
+import java.io.Serializable;
+
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Point {
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
+public class Point implements Serializable{
 	@JsonProperty("latitude")
 	Double latitude;
 	@JsonProperty("longitude")

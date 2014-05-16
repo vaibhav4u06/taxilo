@@ -1,12 +1,16 @@
 package com.taxilo.pojo;
 
+import java.io.Serializable;
 import java.util.List;
+
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Car {
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
+public class Car implements Serializable{
 	@JsonProperty("carNumber")
 	private String carNumber;
 	@JsonProperty("driverName")

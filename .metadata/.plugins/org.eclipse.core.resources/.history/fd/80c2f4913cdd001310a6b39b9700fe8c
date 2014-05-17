@@ -1,0 +1,55 @@
+package com.taxilo.service;
+
+import java.net.UnknownHostException;
+
+import com.taxilo.pojo.User;
+
+public interface UserService {
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public User getUserById(String id) throws UnknownHostException;
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 */
+	public User getUserByUsername(String username)  throws UnknownHostException ;
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
+	
+	public boolean createUser(User user);
+	/**
+	 * 
+	 * @param emailId
+	 * @return
+	 */
+	public User getUserByEmailId(String emailId) throws UnknownHostException;
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 */
+	public boolean isUserNameValid(String username) throws UnknownHostException;
+	/**
+	 * 
+	 * @param id
+	 * @param oldPassword
+	 * @param newPassword
+	 * @return
+	 */
+	public boolean changePassword(String id,String oldPassword,String newPassword) throws UnknownHostException ;
+	/**
+	 *  
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	public String login(String username,String password);
+	
+}

@@ -1,0 +1,77 @@
+package com.taxilo.rest.resource;
+
+import java.net.UnknownHostException;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+
+import com.taxilo.pojo.Place;
+import com.taxilo.pojo.ResponsePojo;
+import com.taxilo.service.PlaceService;
+import com.taxilo.service.impl.PlaceServiceImpl;
+
+@Path("/place")
+public class PlaceResource {
+
+	private PlaceService placeService;
+	public PlaceService getPlaceService() {
+		if(placeService==null)
+			placeService = PlaceServiceImpl.INSTANCE;
+		return placeService;
+	}
+	public void setPlaceService(PlaceService placeService) {
+		this.placeService = placeService;
+	}
+	@GET
+	@Produces("application/json")
+	@Path("/v1/json/{id}")
+	public Response getPlaceById(@PathParam("id") String id){
+		long start = System.currentTimeMillis();
+		try {
+			Place place = getPlaceService().getPlaceById(id);
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(true);
+			res.setMessage("");
+			res.setData(place);
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(false);
+			res.setMessage(e.getMessage());
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		}
+	}
+	
+	@GET
+	@Produces("application/json")
+	@Path("/v1/json/{name}")
+	public Response getPlaceByExactName(@PathParam("name") String name){
+		long start = System.currentTimeMillis();
+		try {
+			Place place = getPlaceService().getPlaceByExactName(name);
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(true);
+			res.setMessage("");
+			res.setData(place);
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(false);
+			res.setMessage(e.getMessage());
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		}
+	}
+}

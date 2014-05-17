@@ -1,0 +1,6 @@
+package com.taxilo.enums;
+
+
+public enum InstanceEnum {
+	INSTANCE;
+}

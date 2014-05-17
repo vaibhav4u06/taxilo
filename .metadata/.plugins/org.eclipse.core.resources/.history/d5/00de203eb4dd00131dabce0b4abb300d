@@ -1,0 +1,18 @@
+package com.taxilo.service;
+
+import java.util.List;
+
+import com.taxilo.pojo.Place;
+
+public interface PlaceService {
+	
+	public Place getPlaceById(String id);
+	public Place getPlaceByExactName(String name);
+	public List<Place> getPlacesByName(String name);
+	public List<Place> getPlacesByCityId(String cityId);
+	public List<Place> getNearByPlaces(Double longitude,Double latitude,String cityId,int radius);
+	public boolean addAPlace(Place place);
+	
+	
+		
+}

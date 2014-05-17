@@ -1,0 +1,108 @@
+package com.taxilo.service.impl;
+
+import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.bson.types.ObjectId;
+import org.jongo.Jongo;
+import org.jongo.MongoCollection;
+
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.Mongo;
+import com.taxilo.pojo.Place;
+import com.taxilo.service.PlaceService;
+
+public enum PlaceServiceImpl implements PlaceService {
+INSTANCE;
+private static final String DB="taxilo";
+private static final String PLACE="place";
+private Mongo mongo;
+private Jongo jongo;
+private MongoCollection jongoPlaceCollection;
+
+public Mongo getMongo() throws UnknownHostException {
+	if(mongo==null){
+		mongo = new Mongo("localhost");
+	}
+	return mongo;
+}
+
+public void setMongo(Mongo mongo) {
+	this.mongo = mongo;
+}
+
+public Jongo getJongo() throws UnknownHostException {
+	if(jongo==null){
+		jongo = new Jongo(getMongo().getDB(DB));
+	}
+	return jongo;
+}
+
+public void setJongo(Jongo jongo) {
+	this.jongo = jongo;
+}
+
+public MongoCollection getJongoPlaceCollection() throws UnknownHostException {
+	if(jongoPlaceCollection==null){
+		jongoPlaceCollection = getJongo().getCollection(PLACE);
+	}
+	return jongoPlaceCollection;
+}
+
+public void setJongoPlaceCollection(MongoCollection jongoPlaceCollection) {
+	this.jongoPlaceCollection = jongoPlaceCollection;
+}
+
+@Override
+public Place getPlaceById(String id) {
+	Map<String,String> query = new HashMap<String,String>();
+	Place place = getJongoPlaceCollection().findOne(getQueryObject(query).toString);
+	return null;
+}
+
+private DBObject getQueryObject(Map<String, String> query) {
+	DBObject obj = new BasicDBObject();
+	for(Map.Entry<String, String> entry:query.entrySet()){
+		if(entry.getKey().equalsIgnoreCase("_id")){
+			obj.put(entry.getKey(), new ObjectId(entry.getValue()));
+		}else{
+			obj.put(entry.getKey(), entry.getValue());
+		}
+	}
+	return obj;
+}
+
+@Override
+public Place getPlaceByExactName(String name) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public List<Place> getPlacesByName(String name) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public List<Place> getPlacesByCityId(String cityId) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public List<Place> getNearByPlaces(Double longitude, Double latitude,
+		String cityId, int radius) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public boolean addAPlace(Place place) {
+	// TODO Auto-generated method stub
+	return false;
+}
+}

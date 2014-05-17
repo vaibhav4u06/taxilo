@@ -1,0 +1,13 @@
+package com.taxilo.service;
+
+import com.taxilo.pojo.User;
+
+public interface UserService {
+	public User getUserById(String id);
+	public User getUserByUsername(String username);
+	public boolean createUser(User user);
+	public boolean isUserNameValid(String username);
+	public boolean changePassword(String id,String oldPassword,String newPassword);
+	public String login(String username,String password);
+	
+}

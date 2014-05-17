@@ -1,0 +1,23 @@
+package com.taxilo.enums;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.taxilo.service.impl.PlaceServiceImpl;
+import com.taxilo.service.impl.ProviderServiceImpl;
+import com.taxilo.service.impl.UserServiceImpl;
+
+
+public enum InstanceEnum {
+	INSTANCE(new HashMap<String,Object>());
+	
+	private InstanceEnum(Map<String,Object> map){
+		map.put("user", new UserServiceImpl());
+		map.put("place", new PlaceServiceImpl());
+		map.put("provider", new ProviderServiceImpl());
+	}
+	
+	public Object getInstance(String className){
+		return InstanceEnum.INSTANCE.
+	}
+}

@@ -1,0 +1,47 @@
+package com.taxilo.service.impl;
+
+import java.util.List;
+
+import com.taxilo.pojo.Place;
+import com.taxilo.service.PlaceService;
+
+public enum PlaceServiceImpl implements PlaceService {
+INSTANCE;
+
+@Override
+public Place getPlaceById(String id) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public Place getPlaceByExactName(String name) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public List<Place> getPlacesByName(String name) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public List<Place> getPlacesByCityId(String cityId) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public List<Place> getNearByPlaces(Double longitude, Double latitude,
+		String cityId, int radius) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public boolean addAPlace(Place place) {
+	// TODO Auto-generated method stub
+	return false;
+}
+}

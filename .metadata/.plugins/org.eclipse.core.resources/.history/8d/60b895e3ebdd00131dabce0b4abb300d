@@ -1,0 +1,223 @@
+package com.taxilo.rest.resource;
+
+import java.net.UnknownHostException;
+import java.util.List;
+
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response;
+
+import com.taxilo.pojo.Place;
+import com.taxilo.pojo.ResponsePojo;
+import com.taxilo.service.PlaceService;
+import com.taxilo.service.impl.PlaceServiceImpl;
+
+@Path("/place")
+public class PlaceResource {
+
+	private PlaceService placeService;
+	public PlaceService getPlaceService() {
+		if(placeService==null)
+			placeService = PlaceServiceImpl.INSTANCE;
+		return placeService;
+	}
+	public void setPlaceService(PlaceService placeService) {
+		this.placeService = placeService;
+	}
+	@GET
+	@Produces("application/json")
+	@Path("/v1/json/{id}")
+	public Response getPlaceById(@PathParam("id") String id){
+		long start = System.currentTimeMillis();
+		try {
+			Place place = getPlaceService().getPlaceById(id);
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(true);
+			res.setMessage("");
+			res.setData(place);
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(false);
+			res.setMessage(e.getMessage());
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		}
+	}
+	
+	@GET
+	@Produces("application/json")
+	@Path("/v1/json/name/{name}")
+	public Response getPlaceByExactName(@PathParam("name") String name){
+		long start = System.currentTimeMillis();
+		try {
+			Place place = getPlaceService().getPlaceByExactName(name);
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(true);
+			res.setMessage("");
+			res.setData(place);
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(false);
+			res.setMessage(e.getMessage());
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		}
+	}
+	
+	@GET
+	@Produces("application/json")
+	@Path("/v1/json/text/{name}")
+	public Response getPlacesByName(@PathParam("name") String name){
+		long start = System.currentTimeMillis();
+		try {
+			List<Place> places = getPlaceService().getPlacesByName(name);
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(true);
+			res.setMessage("");
+			res.setData(places);
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(false);
+			res.setMessage(e.getMessage());
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		}
+	}
+	
+
+	@GET
+	@Produces("application/json")
+	@Path("/v1/json/regex/{name}")
+	public Response getPlacesByNameRegex(@PathParam("name") String name){
+		long start = System.currentTimeMillis();
+		try {
+			List<Place> places = getPlaceService().getNameRegexSearch(name);
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(true);
+			res.setMessage("");
+			res.setData(places);
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(false);
+			res.setMessage(e.getMessage());
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		}
+	}
+	
+	@GET
+	@Produces("application/json")
+	@Path("/v1/json/city/{cityid}")
+	public Response getPlacesByCityId(@PathParam("cityid") String cityId){
+		long start = System.currentTimeMillis();
+		try {
+			List<Place> places = getPlaceService().getPlacesByCityId(cityId);
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(true);
+			res.setMessage("");
+			res.setData(places);
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(false);
+			res.setMessage(e.getMessage());
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		}
+	}
+	
+	@GET
+	@Produces("application/json")
+	@Path("/v1/json/nearby")
+	public Response getPlacesByCityId(@QueryParam("latitude") Double latitude,@QueryParam("longitude") Double longitude,@QueryParam("cityid") String cityId,@QueryParam("radius") Integer radius){
+		long start = System.currentTimeMillis();
+		try {
+			List<Place> places = getPlaceService().getNearByPlaces(longitude, latitude, cityId, radius);
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(true);
+			res.setMessage("");
+			res.setData(places);
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(false);
+			res.setMessage(e.getMessage());
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		}
+	}
+	
+	@POST
+	@Produces("application/json")
+	@Path("/v1/json/add")
+	public Response getPlacesByCityId(@FormParam("latitude") Double latitude,@FormParam("longitude") Double longitude,@FormParam("cityid") String cityId
+			,@FormParam("name") String name,@FormParam("address") String address,@FormParam("category") String category,@FormParam("cityname") String cityName
+			,@FormParam("statename") String stateName){
+		long start = System.currentTimeMillis();
+		try {
+			Place place = new Place();
+			Double[] geoLocation = new Double[2];
+			geoLocation[0] = longitude;
+			geoLocation[1] = latitude;
+			place.setName(name);
+			place.setCategory(category);
+			place.setAddress(address);
+			place.setCityName(cityName);
+			place.setCityId(cityId);
+			place.setStateName(stateName);
+			place.setCountryName("India");
+			place.setGeoLocation(geoLocation);
+			place.setLatitude(latitude);
+			place.setLongitude(longitude);
+			Boolean isSaved = getPlaceService().addAPlace(place);
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(true);
+			res.setMessage("");
+			res.setData("saved");
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(false);
+			res.setMessage(e.getMessage());
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		}
+	}
+}

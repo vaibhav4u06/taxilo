@@ -51,12 +51,12 @@ public class Provider implements Serializable{
 	@JsonProperty("userId")
 	private String userId;
 	@JsonProperty("edges")
-	private List<BusEdge> edges;
+	private List<String> edges;
 	
-	public List<BusEdge> getEdges() {
+	public List<String> getEdges() {
 		return edges;
 	}
-	public void setEdges(List<BusEdge> edges) {
+	public void setEdges(List<String> edges) {
 		this.edges = edges;
 	}
 	public String getUserId() {

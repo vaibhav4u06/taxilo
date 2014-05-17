@@ -25,6 +25,20 @@ public class Car implements Serializable{
 	private Double[] currentPoint;
 	@JsonProperty("carType")
 	private String carType;
+	@JsonProperty("carModel")
+	private String carModel;
+	public List<String> getDriverImageUrl() {
+		return driverImageUrl;
+	}
+	public void setDriverImageUrl(List<String> driverImageUrl) {
+		this.driverImageUrl = driverImageUrl;
+	}
+	public String getCarModel() {
+		return carModel;
+	}
+	public void setCarModel(String carModel) {
+		this.carModel = carModel;
+	}
 	@JsonProperty("isAvailable")
 	private Boolean isAvailable;
 	@JsonProperty("isAc")

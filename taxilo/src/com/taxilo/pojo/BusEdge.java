@@ -1,6 +1,7 @@
 package com.taxilo.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
@@ -13,6 +14,14 @@ public class BusEdge implements Serializable{
 	private String source;
 	@JsonProperty("destination")
 	private String destination;
+	@JsonProperty("providers")
+	private List<Integer> providers;
+	public List<Integer> getProviders() {
+		return providers;
+	}
+	public void setProviders(List<Integer> providers) {
+		this.providers = providers;
+	}
 	public String getSource() {
 		return source;
 	}

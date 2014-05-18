@@ -11,11 +11,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class Rating implements Serializable{
 	@JsonProperty("punctualityRating")
-	Integer punctualityRating;
+	private Integer punctualityRating;
 	@JsonProperty("cleanlinessRating")
-	Integer cleanlinessRating;
+	private Integer cleanlinessRating;
 	@JsonProperty("hospitalityRating")
-	Integer hospitalityRating;
+	private Integer hospitalityRating;
+	@JsonProperty("userId")
+	private String userId;
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public Integer getPunctualityRating() {
 		return punctualityRating;
 	}

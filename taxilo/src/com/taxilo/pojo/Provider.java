@@ -1,6 +1,7 @@
 package com.taxilo.pojo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
@@ -166,5 +167,53 @@ public class Provider implements Serializable{
 	}
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
+	}
+	public void preSave(Rating rating) {
+		if(this.ratings==null){
+			this.ratings = new ArrayList<Rating>();
+			this.ratings.add(rating);
+			reCalculateOverall();
+		}else{
+			Boolean found=false;
+			Rating foundRating=null;
+			for(Rating erating:this.ratings){
+				if(erating.getUserId().equals(rating.getUserId())){
+					found=true;
+					foundRating = erating;
+					break;
+				}
+			}
+			if(found){
+				this.ratings.remove(foundRating); this.ratings.add(rating);
+				reCalculateOverall();
+			}else{
+				int totalNum = this.ratings.size();
+				this.overallCleanlinessRating = (this.overallCleanlinessRating*totalNum+rating.getCleanlinessRating())/(totalNum+1);
+				this.overallHospitalityRating = (this.overallHospitalityRating*totalNum+rating.getHospitalityRating())/(totalNum+1);
+				this.overallPunctualityRating = (this.overallPunctualityRating*totalNum+rating.getPunctualityRating())/(totalNum+1);
+				this.overallRating = (this.overallCleanlinessRating+this.overallHospitalityRating+this.overallPunctualityRating)/3;
+				this.ratings.add(rating);
+			}
+		}
+	}
+	private void reCalculateOverall() {
+		Double ocr = 0.0;
+		Double ohr = 0.0;
+		Double opr = 0.0;
+		Double or = 0.0;
+		int num = this.ratings.size();
+		for(Rating rating:this.ratings){
+			ocr+=rating.getCleanlinessRating();
+			ohr+=rating.getHospitalityRating();
+			opr+=rating.getPunctualityRating();
+		}
+		ocr/=num;
+		opr/=num;
+		ohr/=num;
+		or = (ocr+opr+ohr)/3;
+		this.overallRating = or;
+		this.overallCleanlinessRating = ocr;
+		this.overallHospitalityRating = ohr;
+		this.overallPunctualityRating = opr;
 	}
 }

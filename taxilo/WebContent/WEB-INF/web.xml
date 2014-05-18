@@ -7,7 +7,7 @@
    </context-param>
    <context-param>
       <param-name>resteasy.resources</param-name>
-       <param-value>com.taxilo.rest.resource.ProviderResource,com.taxilo.rest.resource.UserResource,com.taxilo.rest.resource.PlaceResource</param-value>
+       <param-value>com.taxilo.rest.resource.ProviderResource,com.taxilo.rest.resource.UserResource,com.taxilo.rest.resource.PlaceResource,com.taxilo.rest.resource.EdgeResource</param-value>
    </context-param>
   
    <context-param>  

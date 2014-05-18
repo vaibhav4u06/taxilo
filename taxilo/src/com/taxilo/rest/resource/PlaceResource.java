@@ -154,6 +154,30 @@ public class PlaceResource {
 			return Response.ok().entity(res).build();
 		}
 	}
+	@GET
+	@Produces("application/json")
+	@Path("/v1/json/category")
+	public Response getPlacesByCategory(@QueryParam("cityid") String cityId,@QueryParam("category") String category){
+		long start = System.currentTimeMillis();
+		try {
+			List<Place> places = getPlaceService().getPlacesByCategory(category, cityId);
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(true);
+			res.setMessage("");
+			res.setData(places);
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(false);
+			res.setMessage(e.getMessage());
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		}
+	}
 	
 	@GET
 	@Produces("application/json")

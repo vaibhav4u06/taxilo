@@ -165,4 +165,21 @@ public List<Place> getNameRegexSearch(String name) throws UnknownHostException {
 	}
 	return places;
 }
+
+@Override
+public List<Place> getPlacesByCategory(String category, String cityId)
+		throws UnknownHostException {
+	Map<String,String> query = new HashMap<String,String>();
+	query.put("category", category);
+	if(!category.equalsIgnoreCase("city")){
+		query.put("cityId", cityId);
+	}
+	Iterable<Place> iPlaces = getJongoPlaceCollection().find(getQueryObject(query).toString()).as(Place.class);
+	Iterator<Place> placesIterator = iPlaces.iterator();
+	List<Place> places = new ArrayList<Place>();
+	while(placesIterator.hasNext()){
+		places.add(placesIterator.next());
+	}
+	return places;
+}
 }

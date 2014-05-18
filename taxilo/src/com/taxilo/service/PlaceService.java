@@ -51,6 +51,14 @@ public interface PlaceService {
 	 * @return
 	 */
 	public List<Place> getNameRegexSearch(String name) throws UnknownHostException;
+	/**
+	 * 
+	 * @param category
+	 * @param cityId
+	 * @return
+	 * @throws UnknownHostException
+	 */
+	public List<Place> getPlacesByCategory(String category,String cityId) throws UnknownHostException;
 	
 	
 		

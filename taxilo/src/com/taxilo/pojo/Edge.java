@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
-public class BusEdge implements Serializable{
+public class Edge implements Serializable{
 	@JsonProperty("source")
 	private String source;
 	@JsonProperty("destination")

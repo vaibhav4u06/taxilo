@@ -27,6 +27,14 @@ public class Car implements Serializable{
 	private String carType;
 	@JsonProperty("carModel")
 	private String carModel;
+	@JsonProperty("driverAllowancePerDay")
+	private Integer driverAllowancePerDay;
+	public Integer getDriverAllowancePerDay() {
+		return driverAllowancePerDay;
+	}
+	public void setDriverAllowancePerDay(Integer driverAllowancePerDay) {
+		this.driverAllowancePerDay = driverAllowancePerDay;
+	}
 	public List<String> getDriverImageUrl() {
 		return driverImageUrl;
 	}

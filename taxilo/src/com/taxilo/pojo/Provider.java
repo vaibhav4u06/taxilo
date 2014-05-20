@@ -53,14 +53,7 @@ public class Provider implements Serializable{
 	private String userId;
 	@JsonProperty("edges")
 	private List<String> edges;
-	@JsonProperty("driverAllowancePerDay")
-	private Integer driverAllowancePerDay;
-	public Integer getDriverAllowancePerDay() {
-		return driverAllowancePerDay;
-	}
-	public void setDriverAllowancePerDay(Integer driverAllowancePerDay) {
-		this.driverAllowancePerDay = driverAllowancePerDay;
-	}
+
 	public List<String> getEdges() {
 		return edges;
 	}

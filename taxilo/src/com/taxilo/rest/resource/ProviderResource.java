@@ -199,55 +199,55 @@ public class ProviderResource {
 		}
 	}
 	
-//	@POST
-//	@Produces("application/json")
-//	@Path("/v1/json/{id}/addcars")
-//	public Response addCarsForProvider(@FormParam("cars") List<Car> cars,@PathParam("id") String id){
-//		long start = System.currentTimeMillis();
-//		
-//		try {
-//			getProviderService().addCarsForProvider(id, cars);
-//			ResponsePojo res = new ResponsePojo();
-//			res.setSuccess(true);
-//			res.setMessage("");
-//			res.setData("Saved cars");
-//			long end = System.currentTimeMillis();
-//			res.setTimeInSecs(String.valueOf((end-start)/1000));
-//			return Response.ok().entity(res).build();
-//		} catch (UnknownHostException e) {
-//			e.printStackTrace();
-//			ResponsePojo res = new ResponsePojo();
-//			res.setSuccess(false);
-//			res.setMessage(e.getMessage());
-//			long end = System.currentTimeMillis();
-//			res.setTimeInSecs(String.valueOf((end-start)/1000));
-//			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
-//		}
-//	}
-//	
-//	@POST
-//	@Produces("application/json")
-//	@Path("/v1/json/{id}/addrating")
-//	public Response addRatingsForProvider(@FormParam("rating") Rating rating,@PathParam("id") String id){
-//		long start = System.currentTimeMillis();
-//		
-//		try {
-//			getProviderService().addRatingForProvider(id, rating);
-//			ResponsePojo res = new ResponsePojo();
-//			res.setSuccess(true);
-//			res.setMessage("");
-//			res.setData("Saved rating");
-//			long end = System.currentTimeMillis();
-//			res.setTimeInSecs(String.valueOf((end-start)/1000));
-//			return Response.ok().entity(res).build();
-//		} catch (UnknownHostException e) {
-//			e.printStackTrace();
-//			ResponsePojo res = new ResponsePojo();
-//			res.setSuccess(false);
-//			res.setMessage(e.getMessage());
-//			long end = System.currentTimeMillis();
-//			res.setTimeInSecs(String.valueOf((end-start)/1000));
-//			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
-//		}
-//	}
+	@POST
+	@Produces("application/json")
+	@Path("/v1/json/{id}/addcars")
+	public Response addCarsForProvider(@FormParam("cars") List<Car> cars,@PathParam("id") String id){
+		long start = System.currentTimeMillis();
+		
+		try {
+			getProviderService().addCarsForProvider(id, cars);
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(true);
+			res.setMessage("");
+			res.setData("Saved cars");
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(false);
+			res.setMessage(e.getMessage());
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
+		}
+	}
+	
+	@POST
+	@Produces("application/json")
+	@Path("/v1/json/{id}/addrating")
+	public Response addRatingsForProvider(@FormParam("rating") Rating rating,@PathParam("id") String id){
+		long start = System.currentTimeMillis();
+		
+		try {
+			getProviderService().addRatingForProvider(id, rating);
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(true);
+			res.setMessage("");
+			res.setData("Saved rating");
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.ok().entity(res).build();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+			ResponsePojo res = new ResponsePojo();
+			res.setSuccess(false);
+			res.setMessage(e.getMessage());
+			long end = System.currentTimeMillis();
+			res.setTimeInSecs(String.valueOf((end-start)/1000));
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
+		}
+	}
 }

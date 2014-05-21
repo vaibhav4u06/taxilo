@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.bson.types.ObjectId;
+import org.jongo.Distinct;
 import org.jongo.Jongo;
 import org.jongo.MongoCollection;
 
@@ -133,5 +134,9 @@ public Boolean saveEdge(String source, String destination, Integer provider) thr
 	return true;
 }
 
+public List<String> getDistinctSource() throws UnknownHostException{
+	List<String> distinctSources = getJongoBusEdgeCollection().distinct("source").as(String.class);
+	return distinctSources;
+}
 	
 }

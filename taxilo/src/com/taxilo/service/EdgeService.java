@@ -37,4 +37,10 @@ public interface EdgeService {
 	 * @return
 	 */
 	public Boolean saveEdge(String source,String destination,Integer provider) throws UnknownHostException;
+	/**
+	 * 
+	 * @return
+	 * @throws UnknownHostException
+	 */
+	public List<String> getDistinctSource() throws UnknownHostException;
 }

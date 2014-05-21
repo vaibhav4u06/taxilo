@@ -20,8 +20,7 @@ public class StartupListener implements ServletContextListener{
 	PlaceService placeService = PlaceServiceImpl.INSTANCE;
 	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Shutting down context");
 	}
 
 	@Override
@@ -58,12 +57,24 @@ public class StartupListener implements ServletContextListener{
 				for(Place place:locPlaces){
 					locMap.put(place.getName(), place.getId());
 				}
-				TaxiloCache.localityCache.put(entry.getKey(), locMap);
+				TaxiloCache.localityCache.put(entry.getValue(), locMap);
 			}
 			System.out.println("locality cache end");
+			System.out.println("airport cache start");
+			for(Map.Entry<String, String> entry:TaxiloCache.cityCache.entrySet()){
+				List<Place> locPlaces = placeService.getPlacesByCategory("Airport", entry.getValue());
+				Map<String,String> locMap = new HashMap<String,String>();
+				for(Place place:locPlaces){
+					locMap.put(place.getName(), place.getId());
+				}
+				TaxiloCache.airportCache.put(entry.getValue(), locMap);
+			}
+			
+			System.out.println("airport cache end");
 			System.out.println(TaxiloCache.cityCache);
 			System.out.println(TaxiloCache.edgeCache);
 			System.out.println(TaxiloCache.localityCache);
+			System.out.println(TaxiloCache.airportCache);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}

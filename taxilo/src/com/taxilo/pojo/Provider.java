@@ -216,4 +216,6 @@ public class Provider implements Serializable{
 		this.overallHospitalityRating = ohr;
 		this.overallPunctualityRating = opr;
 	}
+	
+	
 }

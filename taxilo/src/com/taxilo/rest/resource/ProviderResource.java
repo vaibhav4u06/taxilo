@@ -3,6 +3,7 @@ package com.taxilo.rest.resource;
 import java.net.UnknownHostException;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -175,8 +176,9 @@ public class ProviderResource {
 	
 	@POST
 	@Produces("application/json")
+	@Consumes("application/json")
 	@Path("/v1/json/saveprovider")
-	public Response saveProvider(@FormParam("provider") Provider provider){
+	public Response saveProvider(Provider provider){
 		long start = System.currentTimeMillis();
 		
 		try {
@@ -201,8 +203,9 @@ public class ProviderResource {
 	
 	@POST
 	@Produces("application/json")
+	@Consumes("application/json")
 	@Path("/v1/json/{id}/addcars")
-	public Response addCarsForProvider(@FormParam("cars") List<Car> cars,@PathParam("id") String id){
+	public Response addCarsForProvider(List<Car> cars,@PathParam("id") String id){
 		long start = System.currentTimeMillis();
 		
 		try {
@@ -227,8 +230,9 @@ public class ProviderResource {
 	
 	@POST
 	@Produces("application/json")
+	@Consumes("application/json")
 	@Path("/v1/json/{id}/addrating")
-	public Response addRatingsForProvider(@FormParam("rating") Rating rating,@PathParam("id") String id){
+	public Response addRatingsForProvider(Rating rating,@PathParam("id") String id){
 		long start = System.currentTimeMillis();
 		
 		try {

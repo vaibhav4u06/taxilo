@@ -51,8 +51,8 @@ public class UpdateCabData {
 		 jongoUserCollection = jongo.getCollection("user");
 		 jongoPlaceCollection = jongo.getCollection("place");
 		UpdateCabData ucd = new UpdateCabData();
-		ucd.updateLocation();
-		ucd.updateUser();
+		//ucd.updateLocation();
+		//ucd.updateUser();
 		ucd.updateProvider();
 	}
 

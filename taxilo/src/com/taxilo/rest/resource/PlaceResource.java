@@ -182,7 +182,7 @@ public class PlaceResource {
 	@GET
 	@Produces("application/json")
 	@Path("/v1/json/nearby")
-	public Response getPlacesByCityId(@QueryParam("latitude") Double latitude,@QueryParam("longitude") Double longitude,@QueryParam("cityid") String cityId,@QueryParam("radius") Integer radius){
+	public Response getNearbyPlaces(@QueryParam("latitude") Double latitude,@QueryParam("longitude") Double longitude,@QueryParam("cityid") String cityId,@QueryParam("radius") Integer radius){
 		long start = System.currentTimeMillis();
 		try {
 			List<Place> places = getPlaceService().getNearByPlaces(longitude, latitude, cityId, radius);
@@ -207,7 +207,7 @@ public class PlaceResource {
 	@POST
 	@Produces("application/json")
 	@Path("/v1/json/add")
-	public Response getPlacesByCityId(@FormParam("latitude") Double latitude,@FormParam("longitude") Double longitude,@FormParam("cityid") String cityId
+	public Response addAPlace(@FormParam("latitude") Double latitude,@FormParam("longitude") Double longitude,@FormParam("cityid") String cityId
 			,@FormParam("name") String name,@FormParam("address") String address,@FormParam("category") String category,@FormParam("cityname") String cityName
 			,@FormParam("statename") String stateName){
 		long start = System.currentTimeMillis();
